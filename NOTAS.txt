@@ -1,0 +1,72 @@
+library ieee; 
+use ieee.std_logic_1164.all; 
+use ieee.std_logic_unsigned.all;
+
+entity CIRC_SEQ is port(
+                            A   : in STD_LOGIC_VECTOR(2 DOWNTO 0);
+                            CLK : in STD_LOGIC;
+                            S   : out STD_LOGIC);
+end CIRC_SEQ;
+
+architecture comportamental of CIRC_SEQ is
+
+--signal CONTA : STD_LOGIC_VECTOR(2 DOWNTO 0);
+
+begin
+
+    process(A, CLK, S)
+    begin
+        if rising_edge(CLK) then
+            if A = "111";
+                S <= 1;
+            else 
+                S <= 0;
+        end if;
+    end process;
+
+end comportamental;
+
+library ieee; 
+use ieee.std_logic_1164.all; 
+use ieee.std_logic_unsigned.all; 
+use ieee.std_logic_1164."=";
+
+entity CIRC_SEQ is port(
+                            A   : in STD_LOGIC_VECTOR(8 DOWNTO 0);
+                            --CLK : in STD_LOGIC;
+                            S   : out STD_LOGIC);
+end CIRC_SEQ;
+
+architecture comportamental of CIRC_SEQ is
+
+signal AUX : STD_LOGIC_VECTOR(2 DOWNTO 0);
+
+begin
+
+    process(A, AUX)
+    begin
+        for i in 0 to 2 loop
+            if i = 0 then
+                AUX <= A(2 DOWNTO 0);
+                if AUX = "111" then
+                    S <= '1';
+                end if;
+            end if;
+
+            if i = 1 then
+                AUX <= A(5 DOWNTO 3);
+                if AUX = "111" then
+                    S <= '1';
+                end if;
+            end if;
+
+            if i = 2 then
+                AUX <= A(8 DOWNTO 6);
+                if AUX = "111" then
+                    S <= '1';
+                end if;
+            end if;
+        end loop;
+    end process;
+
+end comportamental;
